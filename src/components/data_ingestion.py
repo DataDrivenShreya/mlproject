@@ -8,14 +8,17 @@ from src.logger import logging
 import pandas as pd 
 
 from sklearn.model_selection import train_test_split 
-from dataclasses import dataclass 
+from dataclasses import dataclass
+
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
 
 # Create Folder and File name 
 @dataclass 
 class DataIngestionConfig:
-    train__data_path: str=os.path.join('artifact',"train.csv")
-    test__data_path: str=os.path.join('artifact',"test.csv")
-    raw__data_path: str=os.path.join('artifact',"raw.csv")
+    train_data_path: str=os.path.join('artifact',"train.csv")
+    test_data_path: str=os.path.join('artifact',"test.csv")
+    raw_data_path: str=os.path.join('artifact',"raw.csv")
 
 # Make Train and Test Split
 class DataIngestion:
@@ -30,25 +33,25 @@ class DataIngestion:
             logging.info('Read the dataset as dataframe')
 
             # Make folder 
-            os.makedirs(os.path.dirname(self.ingestion_config.train__data_path),exist_ok=True)
+            os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
             
             # Data into Raw datafolder
-            df.to_csv(self.ingestion_config.raw__data_path,index=False,header=True)
+            df.to_csv(self.ingestion_config.raw_data_path,index=False,header=True)
 
             # Train and Test Split 
             logging.info("Train Test Split Initiated")
             train_set, test_set = train_test_split(df,test_size=0.2,random_state=42)
 
             # Move train and test data into their folder
-            train_set.to_csv(self.ingestion_config.train__data_path,index=False,header=True)
-            test_set.to_csv(self.ingestion_config.test__data_path,index=False,header=True)
+            train_set.to_csv(self.ingestion_config.train_data_path,index=False,header=True)
+            test_set.to_csv(self.ingestion_config.test_data_path,index=False,header=True)
         
             logging.info("Ingestion of the data is completed")
 
             # Return Train and Test Path 
             return (
-                self.ingestion_config.train__data_path,
-                self.ingestion_config.test__data_path,
+                self.ingestion_config.train_data_path,
+                self.ingestion_config.test_data_path,
 
             )
         except Exception as e:
@@ -56,4 +59,7 @@ class DataIngestion:
         
 if __name__ =="__main__":
     obj = DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data, test_data =obj.initiate_data_ingestion()
+
+    data_transformation = DataTransformation()
+    data_transformation.initiate_data_transformation(train_data, test_data)
