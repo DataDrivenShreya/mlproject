@@ -86,17 +86,19 @@ class ModelTrainer:
                 
             }
 
-
             model_report:dict = evaluate_models(X_train=X_train,X_test=X_test, y_train=y_train, y_test=y_test,models=models, param=params)
 
             ## To get best model score from dict 
             best_model_score = max(sorted(model_report.values()))
 
-            ## To get best model name from dict 
+            ## To get best model name from dict using index method 
+            # The best score is at position X in the scores list; 
+            # give me the model name at position X in the names list.  
             best_model_name = list(model_report.keys())[
                 list(model_report.values()).index(best_model_score)
             ]
 
+            # run the best model from models 
             best_model = models[best_model_name]
 
             if best_model_score<0.6:

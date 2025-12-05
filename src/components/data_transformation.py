@@ -30,13 +30,13 @@ class DataTransformation:
         '''
 
         try:
-            numerical_columns = ['writing score','reading score']
+            numerical_columns = ['writing_score','reading_score']
             categorical_columns = [
                 "gender",
-                "race/ethnicity",
-                "parental level of education",
+                "race_ethnicity",
+                "parental_level_of_education",
                 "lunch",
-                "test preparation course"
+                "test_preparation_course"
             ]
             target_columns_name = "math_score"
 
@@ -82,14 +82,14 @@ class DataTransformation:
 
             preprocessing_obj= self.get_data_transformer_object()
             
-            target_columns_name = "math score"
-            numerical_columns = ['writing score','reading score']
+            target_columns_name = "math_score"
+            numerical_columns = ['writing_score','reading_score']
             categorical_columns = [
                 "gender",
                 "race_ethnicity",
-                "parental level of education",
+                "parental_level_of_education",
                 "lunch",
-                "test preparation course"
+                "test_preparation_course"
             ]
 
             input_features_train_df = train_df.drop(columns=[target_columns_name],axis=1)
