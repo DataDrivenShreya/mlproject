@@ -1,1 +1,85 @@
-<h1> Welcome to home page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Student Performance System</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            animation: slideDown 1.5s ease;
+        }
+
+        p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .btn-container {
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            background: #ffffff;
+            color: #2575fc;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background: #f1f1f1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <h1>Welcome to the Student Performance System</h1>
+        <p>Predict exam performance using AI & Machine Learning</p>
+
+        <div class="btn-container">
+            <a href="/predict" style="text-decoration:none;">
+                <button class="btn">Go to Prediction Page</button>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
